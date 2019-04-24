@@ -16,9 +16,10 @@ def numerical_differential(f, x, p):
     while not it.finished:
         idx = it.multi_index
         tmp_val = x[idx]
+        # self.theta[key]を上書き
         x[idx] = float(tmp_val) + p
         fxh = f(x) # f(x+h)
-        
+        # self.theta[key]を上書き
         x[idx] = tmp_val
         fx = f(x) # f(x)
         grad[idx] = (fxh - fx) / p        
