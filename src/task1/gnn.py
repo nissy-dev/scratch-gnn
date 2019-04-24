@@ -4,27 +4,12 @@ sys.path.append(os.getcwd())
 import numpy as np
 from src.functions.activation.relu import relu
 
-# 4 dimension
-test_gragh = np.array([
-    [0, 1, 0, 0],
-    [1, 0, 1, 1],
-    [0, 1, 0, 1],
-    [0, 1, 1, 0],
-])
-
 class Gnn:
-    def __init__(self, graph):
-        """
-        Parameters
-        ----------
-        graph : array
-            グラフ(隣接行列)
-        """
-        self.graph = graph
+    def __init__(self, fvdim, step):
         #  特徴ベクトルの次元 (ハイパーパラメータ)
-        self.fvdim = 8
+        self.fvdim = fvdim
         # ステップ数 (ハイパーパラメータ)
-        self.step = 2
+        self.step = step
         # ハイパーパラメーター fvdim × fvdim matrix
         np.random.seed(1)
         self.W = np.random.normal(0, 0.4, [self.fvdim, self.fvdim])
@@ -51,19 +36,26 @@ class Gnn:
     def _readout(self, feature_vectors):
         return np.sum(feature_vectors, axis=0)
 
-    def calc_hg(self):
-        # initialize
-        number_of_node = self.graph.shape[0]
+    def calc_hg(self, graph):
+        number_of_node = graph.shape[0]
         feature_vectors = self._get_init_feature_vectors(self.fvdim, number_of_node)
         for i in range(0, self.step):
-            tmp_vectors = self._aggregate_1(feature_vectors, self.graph, number_of_node)
+            tmp_vectors = self._aggregate_1(feature_vectors, graph, number_of_node)
             feature_vectors = self._aggregate_2(self.W, tmp_vectors)
 
         return self._readout(feature_vectors)
 
 if __name__ == '__main__':
-    gnn = Gnn(graph=test_gragh)
-    hg = gnn.calc_hg()
+    # 4 dimension
+    gragh = np.array([
+        [0, 1, 0, 0],
+        [1, 0, 1, 1],
+        [0, 1, 0, 1],
+        [0, 1, 1, 0],
+    ])
+
+    gnn = Gnn(fvdim=8, step=2)
+    hg = gnn.calc_hg(gragh)
     print(hg)
 
 # testはmethodごとのtest + 簡単なグラフでのテストを書く
