@@ -1,7 +1,7 @@
 import numpy as np
 
 def numerical_differential(f, x, p):
-    """function for calculating numerical_gradient.
+    """function for calculating numerical_differential.
 
     Args:
         f (Variable): loss function
@@ -9,21 +9,22 @@ def numerical_differential(f, x, p):
         p (Variable): perturbation (real number)
     
     Returns:
-        output : 
+        output :  Output variable whose shape is same with `x`
     """
     grad = np.zeros_like(x)
     it = np.nditer(x, flags=['multi_index'], op_flags=['readwrite'])
     while not it.finished:
         idx = it.multi_index
         tmp_val = x[idx]
-        # self.theta[key]を上書き
+        # overwrite self.theta[key]
         x[idx] = float(tmp_val) + p
         fxh = f(x) # f(x+h)
-        # self.theta[key]を上書き
+        # overwrite self.theta[key]
         x[idx] = tmp_val
         fx = f(x) # f(x)
-        grad[idx] = (fxh - fx) / p        
-        x[idx] = tmp_val # 値を元に戻す
+        grad[idx] = (fxh - fx) / p
+        # restore self.theta[key]
+        x[idx] = tmp_val
         it.iternext() 
 
     return grad

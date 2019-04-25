@@ -2,10 +2,12 @@ import os, sys
 sys.path.append(os.getcwd())
 
 import numpy as np
+from pprint import pprint
 from src.functions.activation.relu import relu
 from src.functions.activation.sigmoid import sigmoid
 from src.functions.loss.binary_cross_entropy_loss import binary_cross_entropy_loss
 from src.functions.utils.numerical_differential import numerical_differential
+from src.functions.utils.create_loss_figure import create_loss_figure
 
 class Gnn:
     def __init__(self, fvdim, step, learning_rate, perturbation, epoch):
@@ -29,14 +31,12 @@ class Gnn:
         self.theta['b'] = np.array([0], dtype=float)
 
     def _get_init_feature_vectors(self, fvdim, graph):
-        # 次元fvdim、最初の要素が１それ以外が０のベクトルをノード分生成 
         number_of_node = graph.shape[0]
         tmp_vector = np.zeros((fvdim * number_of_node))
         tmp_vector[::fvdim] = 1
         return tmp_vector.reshape(number_of_node, fvdim)
     
     def _aggregate(self, feature_vectors, graph, W):
-        # 集約処理
         number_of_node = graph.shape[0]
         vector_list = [np.sum(feature_vectors[graph[i]==1], axis=0) for i in range(0, number_of_node)]
         a = np.array(vector_list)
@@ -101,6 +101,7 @@ if __name__ == '__main__':
         [0, 1, 1, 0, 0, 1, 0, 1, 0, 0, 0, 1],
         [0, 1, 0, 0, 1, 0, 0, 0, 0, 1, 1, 0],
     ])
-    gnn = Gnn(fvdim=8, step=2, learning_rate=0.0001, perturbation=0.001, epoch=10)
-    loss_list = gnn.fit(graph=graph, y=0)
-    print(loss_list)
+    gnn = Gnn(fvdim=8, step=2, learning_rate=0.0001, perturbation=0.001, epoch=20)
+    loss_list = gnn.fit(graph, 0)
+    create_loss_figure(loss_list)
+    pprint(loss_list)

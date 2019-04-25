@@ -2,6 +2,7 @@ import os, sys
 sys.path.append(os.getcwd())
 
 import numpy as np
+from pprint import pprint
 from src.functions.activation.relu import relu
 
 class Gnn:
@@ -56,6 +57,6 @@ if __name__ == '__main__':
 
     gnn = Gnn(fvdim=8, step=2)
     hg = gnn.calc_hg(gragh)
-    print(hg)
+    pprint(hg.tolist())
 
 # testはmethodごとのtest + 簡単なグラフでのテストを書く

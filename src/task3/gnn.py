@@ -72,7 +72,6 @@ class Gnn:
         return grads
 
     def fit(self, graph, y):
-        train_loss_list = []
         for i in range(self.epoch):
             # 勾配の計算
             grad = self.numerical_gradient(graph, y)
@@ -82,9 +81,6 @@ class Gnn:
             
             # 学習経過の記録
             loss = self.loss(graph, y)
-            train_loss_list.append(loss)
-
-        return train_loss_list
 
 if __name__ == '__main__':
     # 12 dimension
@@ -103,5 +99,4 @@ if __name__ == '__main__':
         [0, 1, 0, 0, 1, 0, 0, 0, 0, 1, 1, 0],
     ])
     gnn = Gnn(fvdim=8, step=2, learning_rate=0.0001, perturbation=0.001, epoch=10)
-    loss_list = gnn.fit(graph=graph, y=0)
-    print(loss_list)
+    gnn.fit(graph, 0)
