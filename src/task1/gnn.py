@@ -1,5 +1,4 @@
 import os, sys
-from pprint import pprint
 sys.path.append(os.getcwd())
 
 import numpy as np
@@ -45,16 +44,3 @@ class Gnn:
             feature_vectors = self.aggregate_2(self.W, tmp_vectors)
 
         return self.readout(feature_vectors)
-
-if __name__ == '__main__':
-    # 4 dimension
-    gragh = np.array([
-        [0, 1, 0, 0],
-        [1, 0, 1, 1],
-        [0, 1, 0, 1],
-        [0, 1, 1, 0],
-    ])
-
-    gnn = Gnn(fvdim=8, step=2)
-    hg = gnn.calc_hg(gragh)
-    pprint(hg.tolist())
