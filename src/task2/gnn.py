@@ -106,7 +106,7 @@ if __name__ == '__main__':
         loss = gnn.loss(graph, label)
         train_loss_list.append(loss)
 
-    pprint("final loss: {}".format(train_loss_list[-1]))
+    pprint("final loss value: {}".format(train_loss_list[-1]))
 
     # creating figure
     x = np.arange(epoch)
