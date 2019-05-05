@@ -24,7 +24,7 @@ class Gnn:
     def _aggregate_1(self, feature_vectors, graph, number_of_node):
         # 集約処理1
         vector_list = []
-        for i in range(0, number_of_node):
+        for i in range(number_of_node):
             tmp_vector = np.sum(feature_vectors[graph[i]==1], axis=0)
             vector_list.append(tmp_vector)
         return np.array(vector_list)
