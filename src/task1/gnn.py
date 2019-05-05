@@ -1,8 +1,8 @@
 import os, sys
+from pprint import pprint
 sys.path.append(os.getcwd())
 
 import numpy as np
-from pprint import pprint
 from src.functions.activation.relu import relu
 
 class Gnn:
@@ -40,7 +40,7 @@ class Gnn:
     def calc_hg(self, graph):
         number_of_node = graph.shape[0]
         feature_vectors = self._get_init_feature_vectors(self.fvdim, number_of_node)
-        for i in range(0, self.step):
+        for i in range(self.step):
             tmp_vectors = self._aggregate_1(feature_vectors, graph, number_of_node)
             feature_vectors = self._aggregate_2(self.W, tmp_vectors)
 

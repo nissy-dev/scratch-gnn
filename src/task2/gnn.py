@@ -22,9 +22,9 @@ class Gnn:
         # ハイパーパラメータ (更新するもの)
         # W: fvdim × fvdim matrix, A: fvdim vector
         self.theta = {}
-        np.random.seed(12)
+        np.random.seed(1)
         self.theta['W'] = np.random.normal(0, 0.4, [self.fvdim, self.fvdim])
-        np.random.seed(123)
+        np.random.seed(12)
         self.theta['A'] = np.random.normal(0, 0.4, self.fvdim)
         self.theta['b'] = np.array([0], dtype=float)
 
@@ -45,11 +45,16 @@ class Gnn:
 
     def _calc_hg(self, graph):
         feature_vectors = self._get_init_feature_vectors(self.fvdim, graph)
-        for i in range(0, self.step):
+        for i in range(self.step):
             new_features_vectors = self._aggregate(feature_vectors, graph, self.theta['W'])
             feature_vectors = new_features_vectors
 
         return self._readout(feature_vectors)
+
+    def predict(self, graph):
+        hg = self._calc_hg(graph)
+        s = np.dot(self.theta['A'], hg) + self.theta['b'][0]
+        return 1 if sigmoid(s) > 0.5 else 0
 
     def loss(self, graph, y):
         hg = self._calc_hg(graph)
@@ -67,27 +72,26 @@ class Gnn:
 if __name__ == '__main__':
     # data
     graph = np.array([
-        [0, 0, 1, 1, 1, 1, 0, 1, 1, 0, 0, 0],
-        [0, 0, 0, 0, 0, 1, 0, 0, 1, 1, 1, 1],
-        [1, 0, 0, 0, 0, 1, 0, 0, 1, 0, 1, 0],
-        [1, 0, 0, 0, 1, 1, 1, 0, 1, 0, 0, 0],
-        [1, 0, 0, 1, 0, 1, 0, 1, 0, 0, 0, 1],
-        [1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 1, 0],
-        [0, 0, 0, 1, 0, 1, 0, 1, 1, 1, 0, 0],
-        [1, 0, 0, 0, 1, 0, 1, 0, 1, 1, 1, 0],
-        [1, 1, 1, 1, 0, 1, 1, 1, 0, 0, 0, 0],
-        [0, 1, 0, 0, 0, 1, 1, 1, 0, 0, 0, 1],
-        [0, 1, 1, 0, 0, 1, 0, 1, 0, 0, 0, 1],
-        [0, 1, 0, 0, 1, 0, 0, 0, 0, 1, 1, 0],
+        [0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+        [1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+        [0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
+        [0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1],
+        [1, 0, 0, 0, 0, 1, 0, 1, 0, 1, 0],
     ])
-    label = 0
+    label = 1
 
     # hyper parameter
     fvdim = 8
     step = 2
     learning_rate = 0.0001
     perturbation = 0.001
-    epoch = 20
+    epoch = 100
     gnn = Gnn(fvdim, step, learning_rate, perturbation)
 
     train_loss_list = []
@@ -102,14 +106,9 @@ if __name__ == '__main__':
         loss = gnn.loss(graph, label)
         train_loss_list.append(loss)
 
-    pprint(train_loss_list)
+    pprint("final loss: {}".format(train_loss_list[-1]))
 
     # creating figure
-    fig, (left, right) = plt.subplots(ncols=2, figsize=(10,4))
-    left.plot(np.arange(1, len(train_loss_list)+1), train_loss_list, label="loss")
-    plt.xticks(np.arange(1, len(train_loss_list)+1))
-    left.legend()
-    right.plot(np.arange(5, 21), train_loss_list[4:], label="loss")
-    plt.xticks(np.arange(5, 21))
-    right.legend()
-    fig.savefig("src/task2/loss.png")
+    x = np.arange(epoch)
+    plt.plot(x, train_loss_list, label="loss")
+    plt.savefig("src/task2/loss.png")
