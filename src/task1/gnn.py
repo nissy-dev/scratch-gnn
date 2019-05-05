@@ -11,7 +11,6 @@ class Gnn:
         # ステップ数 (ハイパーパラメータ)
         self.step = step
         # ハイパーパラメーター fvdim × fvdim matrix
-        np.random.seed(1)
         self.W = np.random.normal(0, 0.4, [self.fvdim, self.fvdim])
 
     def get_init_feature_vectors(self, fvdim, number_of_node):

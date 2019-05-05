@@ -6,6 +6,7 @@
 # 課題
 ## ディレクトリ構成
 ```
+    ├── report/              # report用ディレクトリ
     ├── src/
     |    ├── task1           # 課題1のコード
     |    ├── task2           # 課題2のコード
@@ -13,6 +14,7 @@
     |    ├── task4           # 課題4のコード
     |    ├── datasets        # データセット
     |    └── functions       # activation, lossなどの関数置き場
+    ├── prediction.txt       # 課題4の提出用ラベル
     └── README.md
 ```
 

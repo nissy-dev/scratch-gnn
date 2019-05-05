@@ -1,6 +1,6 @@
 import os, sys
-from pprint import pprint
 import time
+from pprint import pprint
 import matplotlib.pyplot as plt
 sys.path.append(os.getcwd())
 
@@ -25,9 +25,9 @@ class Gnn:
         # ハイパーパラメータ (更新するもの)
         # W: fvdim × fvdim matrix, A: fvdim vector
         self.theta = {}
-        np.random.seed(12)
+        np.random.seed(1)
         self.theta['W'] = np.random.normal(0, 0.4, [self.fvdim, self.fvdim])
-        np.random.seed(123)
+        np.random.seed(12)
         self.theta['A'] = np.random.normal(0, 0.4, self.fvdim)
         self.theta['b'] = np.array([0], dtype=float)
 
@@ -48,7 +48,7 @@ class Gnn:
 
     def _calc_hg(self, graph):
         feature_vectors = self._get_init_feature_vectors(self.fvdim, graph)
-        for i in range(0, self.step):
+        for i in range(self.step):
             new_features_vectors = self._aggregate(feature_vectors, graph, self.theta['W'])
             feature_vectors = new_features_vectors
 
@@ -56,17 +56,14 @@ class Gnn:
 
     def predict(self, graphs):
         hgs = np.array([self._calc_hg(graph) for graph in graphs])
-        s = np.dot(hgs, self.theta['A']) + self.theta['b'][0]
-        pprint(s)
+        s = np.dot(self.theta['A'], hgs.T).T + self.theta['b'][0]
         return np.array([1 if sigmoid(value) > 0.5 else 0 for value in s])
 
     def accuracy(self, graphs, labels):
         data_size = graphs.shape[0]
         predict = self.predict(graphs)
-        pprint(predict)
-        pprint(labels)
         cnt = 0
-        for i in range(batch_size):
+        for i in range(data_size):
             if predict[i] == labels[i]:
                 cnt += 1
         
@@ -76,11 +73,11 @@ class Gnn:
         # fix for batch processing
         data_size = graphs.shape[0]
         hgs = np.array([self._calc_hg(graph) for graph in graphs])
-        s = np.dot(hgs, self.theta['A']) + self.theta['b'][0]
+        s = np.dot(self.theta['A'], hgs.T).T + self.theta['b'][0]
         return np.sum([binary_cross_entropy_loss(labels[i], s[i]) for i in range(data_size)]) / data_size
 
-    def numerical_gradient(self, graph, y):
-        loss_W = lambda W: self.loss(graph, y)
+    def numerical_gradient(self, graphs, labels):
+        loss_W = lambda W: self.loss(graphs, labels)
         grads = {}
         grads['W'] = numerical_differential(loss_W, self.theta['W'], self.perturbation)
         grads['A'] = numerical_differential(loss_W, self.theta['A'], self.perturbation)
@@ -95,7 +92,7 @@ if __name__ == '__main__':
     learning_rate = 0.0001
     perturbation = 0.001
     epoch = 50
-    batch_size = 50
+    batch_size = 100
 
     number_of_data = 2000
     print("---- start loading datasets ----")
@@ -105,6 +102,8 @@ if __name__ == '__main__':
     gnn = Gnn(fvdim, step, learning_rate, perturbation)
 
     # learning
+    # npa_graphs_train = np.array(graphs)
+    # npa_labels_train = np.array(labels)
     npa_graphs_train = np.array(graphs_train)
     npa_labels_train = np.array(labels_train)
     npa_graphs_test = np.array(graphs_test)
@@ -121,6 +120,8 @@ if __name__ == '__main__':
         for j in range(iteration):
             batch_graphs = npa_graphs_train[rand_index[j]]
             batch_labels = npa_labels_train[rand_index[j]]
+            # batch_graphs = npa_graphs_train
+            # batch_labels = npa_labels_train
             grad = gnn.numerical_gradient(batch_graphs, batch_labels)
             for key in gnn.theta.keys():
                 gnn.theta[key] -= gnn.learning_rate * grad[key]
@@ -142,7 +143,7 @@ if __name__ == '__main__':
 
 
     # creating figure
-    x = np.arange(len(loss_list_train))
+    x = np.arange(epoch * iteration)
     plt.plot(x, loss_list_train, label="train")
     plt.plot(x, loss_list_test, linestyle="dashed", label="test")
     plt.savefig("src/task3/loss.png")
@@ -150,9 +151,5 @@ if __name__ == '__main__':
     plt.plot(x, accuracy_list_test, linestyle="dashed", label="test")
     plt.savefig("src/task3/accuracy.png")
 
-    pprint(loss_list_train)
-    pprint(accuracy_list_train)
-    pprint(loss_list_test)
-    pprint(accuracy_list_test)
     elapsed_time = time.time() - start
     print ("elapsed_time:{0}".format(elapsed_time) + "[sec]")
