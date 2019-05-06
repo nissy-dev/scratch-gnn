@@ -48,7 +48,6 @@ class TestGnn(unittest.TestCase):
         W = np.array([[1, 0, 0], [-1, 0, 0], [1, 0, 0]])
         gnn.W = W
         result = gnn.calc_hg(gragh)
-        # my calculation
         expected = expected = np.array([18, 0, 18])
         assert_array_equal(result, expected)
 
