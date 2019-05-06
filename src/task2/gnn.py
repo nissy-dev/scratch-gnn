@@ -1,5 +1,4 @@
 import os, sys
-from pprint import pprint
 import matplotlib.pyplot as plt
 sys.path.append(os.getcwd())
 
@@ -106,7 +105,7 @@ if __name__ == '__main__':
         loss = gnn.loss(graph, label)
         train_loss_list.append(loss)
 
-    pprint("final loss value: {}".format(train_loss_list[-1]))
+    print("final loss value: {}".format(train_loss_list[-1]))
 
     # creating figure
     x = np.arange(epoch)
