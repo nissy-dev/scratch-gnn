@@ -5,7 +5,7 @@ import time
 import numpy as np
 import matplotlib.pyplot as plt
 from src.task3.gnn import Gnn
-from src.task3.updater import SGD
+from src.task3.updater import MSGD
 from src.functions.utils.load_graph_from_datasets import load_graph_from_datasets
 from src.functions.utils.train_test_split import train_test_split
 
@@ -16,10 +16,11 @@ if __name__ == '__main__':
     step = 2
     learning_rate = 0.0001
     perturbation = 0.001
+    momentum = 0.9
     epoch = 100
     batch_size = 200
     gnn = Gnn(fvdim, step, learning_rate, perturbation)
-    sgd = SGD(learning_rate)
+    msgd = MSGD(learning_rate, momentum)
 
     number_of_data = 2000
     graphs, labels = load_graph_from_datasets(number_of_data)
@@ -45,12 +46,14 @@ if __name__ == '__main__':
         for j in range(iteration):
             batch_graphs = npa_graphs_train[rand_index[j]]
             batch_labels = npa_labels_train[rand_index[j]]
+            batch_graphs = npa_graphs_train
+            batch_labels = npa_labels_train
 
             # update
             grads = gnn.numerical_gradient(batch_graphs, batch_labels)
-            sgd.update(gnn.theta, grads)
+            msgd.update(gnn.theta, grads)
 
-            # store
+            # store loss & accuracy
             loss_train = gnn.loss(batch_graphs, batch_labels)
             loss_test = gnn.loss(npa_graphs_test, npa_labels_test)
             accuracy_train = gnn.accuracy(batch_graphs, batch_labels)
@@ -63,6 +66,7 @@ if __name__ == '__main__':
         print("------- " + str(i+1) + " epoch --------")
         print("train loss, test loss | " + str(loss_train) + ", " + str(loss_test))
         print("train acc, test acc | " + str(accuracy_train) + ", " + str(accuracy_test))
+
 
     # creating figure
     fig = plt.figure()
@@ -78,7 +82,7 @@ if __name__ == '__main__':
     ax2.plot(x, accuracy_list_test, linestyle="dashed", label="test")
     ax2.legend()
     plt.subplots_adjust(hspace=0.4)
-    plt.savefig("src/task3/sgd.png")
+    plt.savefig("src/task3/msgd.png")
 
     elapsed_time = time.time() - start
     print ("elapsed_time:{0}".format(elapsed_time) + "[sec]")

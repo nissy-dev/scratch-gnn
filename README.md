@@ -14,7 +14,6 @@
     |    ├── task4           # 課題4のコード
     |    ├── datasets        # データセット
     |    └── functions       # activation, lossなどの関数置き場
-    ├── prediction.txt       # 課題4の提出用ラベル
     └── README.md
 ```
 
@@ -51,3 +50,5 @@ $ python src/task3/msgd.py
 ```
 
 ## 課題4
+課題3の時点で学習がうまくいかなかったので、  
+Adamの実装だけ `src/task4/updater.py` においてあるのでご確認して頂ければと思います。

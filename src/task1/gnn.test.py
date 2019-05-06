@@ -6,6 +6,7 @@ import numpy as np
 from numpy.testing import assert_array_equal
 from src.task1.gnn import Gnn
 
+# 問題文にあるグラフ
 gragh = np.array([
     [0, 1, 0, 0],
     [1, 0, 1, 1],
