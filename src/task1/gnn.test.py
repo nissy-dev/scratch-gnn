@@ -7,7 +7,7 @@ from numpy.testing import assert_array_equal
 from src.task1.gnn import Gnn
 
 # 問題文にあるグラフ
-gragh = np.array([
+graph = np.array([
     [0, 1, 0, 0],
     [1, 0, 1, 1],
     [0, 1, 0, 1],
@@ -22,7 +22,7 @@ class TestGnn(unittest.TestCase):
         """test method for aggregate_1
         """
         feature_vectors = np.array([[1, 0, 0], [1, 0, 0], [1, 0, 0], [1, 0, 0]])
-        result = gnn.aggregate_1(feature_vectors, gragh, gragh.shape[0])
+        result = gnn.aggregate_1(feature_vectors, graph, graph.shape[0])
         expected = np.array([[1, 0, 0], [3, 0, 0], [2, 0, 0], [2, 0, 0]])
         assert_array_equal(result, expected)
 
@@ -48,7 +48,7 @@ class TestGnn(unittest.TestCase):
         """
         W = np.array([[1, 0, 0], [-1, 0, 0], [1, 0, 0]])
         gnn.W = W
-        result = gnn.calc_hg(gragh)
+        result = gnn.calc_hg(graph)
         expected = expected = np.array([18, 0, 18])
         assert_array_equal(result, expected)
 

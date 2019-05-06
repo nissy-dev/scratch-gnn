@@ -108,3 +108,7 @@ venv.bak/
 
 # for datasets
 datasets
+
+# for output
+*.txt
+*.png
