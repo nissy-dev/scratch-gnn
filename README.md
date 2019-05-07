@@ -6,7 +6,7 @@
 # 課題
 ## ディレクトリ構成
 ```
-    ├── report/              # report用ディレクトリ
+    ├── output/              # 出力用ディレクトリ
     ├── src/
     |    ├── task1           # 課題1のコード
     |    ├── task2           # 課題2のコード
@@ -14,6 +14,7 @@
     |    ├── task4           # 課題4のコード
     |    ├── datasets        # データセット
     |    └── functions       # activation, lossなどの関数置き場
+    ├── report.pdf           # レポート
     └── README.md
 ```
 
@@ -37,7 +38,7 @@ $ python src/task1/gnn.test.py -v
 $ python src/task2/gnn.py
 ```
 
-実行後、最終的な損失の値が表示され、`task2/loss.png` に損失の値がプロットされたグラフが保存されていることが確認できると思います。(具体的なグラフの形は、`data/loss.png` と同じ形になると思います。)
+実行後、最終的な損失の値が表示され、`task2/loss.png` に損失の値がプロットされたグラフが保存されていることが確認できると思います。(具体的なグラフの形は、`output/loss.png` と同じ形になると思います。)
 
 ## 課題3
 
@@ -50,7 +51,8 @@ $ python src/task2/gnn.py
 また上手く学習できなかったことから、[デバックについてレポート (report.pdf)](./report.pdf)を記述したので、
 そちらを参照して頂ければと思います。
 
-SGDによる学習は、以下のコマンドで実行できます。
+SGDによる学習は、以下のコマンドで実行できます。  
+実行結果は、`output/` 以下にあります。
 
 ```
 $ python src/task3/sgd.py
