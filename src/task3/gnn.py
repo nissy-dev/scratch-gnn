@@ -17,9 +17,9 @@ class Gnn:
         # ハイパーパラメータ (更新するもの)
         # W: fvdim × fvdim matrix, A: fvdim vector
         self.theta = {}
-        # np.random.seed(1)
+        np.random.seed(11)
         self.theta['W'] = np.random.normal(0, 0.4, [self.fvdim, self.fvdim])
-        # np.random.seed(12)
+        np.random.seed(1122)
         self.theta['A'] = np.random.normal(0, 0.4, self.fvdim)
         self.theta['b'] = np.array([0], dtype=float)
 

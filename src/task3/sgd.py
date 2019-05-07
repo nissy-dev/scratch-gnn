@@ -16,8 +16,8 @@ if __name__ == '__main__':
     step = 2
     learning_rate = 0.0001
     perturbation = 0.001
-    epoch = 100
-    batch_size = 200
+    epoch = 50
+    batch_size = 100
     gnn = Gnn(fvdim, step, learning_rate, perturbation)
     sgd = SGD(learning_rate)
 

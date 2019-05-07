@@ -1,0 +1,152 @@
+---- finish loading datasets ----
+------- 1 epoch --------
+train loss, test loss | 14.339788015417227, 12.000669101152871
+train acc, test acc | 0.51, 0.5425
+------- 2 epoch --------
+train loss, test loss | 9.896617097419403, 9.008283103227006
+train acc, test acc | 0.53, 0.5425
+------- 3 epoch --------
+train loss, test loss | 9.952936782819721, 7.341467533140892
+train acc, test acc | 0.41, 0.5425
+------- 4 epoch --------
+train loss, test loss | 8.036937026880667, 6.156077054521043
+train acc, test acc | 0.42, 0.5425
+------- 5 epoch --------
+train loss, test loss | 6.55519083125221, 5.1338870033536566
+train acc, test acc | 0.45, 0.5425
+------- 6 epoch --------
+train loss, test loss | 5.003459028432625, 4.2432129126665625
+train acc, test acc | 0.45, 0.5425
+------- 7 epoch --------
+train loss, test loss | 3.520277981366462, 3.4620274466497434
+train acc, test acc | 0.54, 0.5425
+------- 8 epoch --------
+train loss, test loss | 3.1416069874805346, 3.0483893737613745
+train acc, test acc | 0.53, 0.5425
+------- 9 epoch --------
+train loss, test loss | 2.695238725854358, 2.691337175231081
+train acc, test acc | 0.54, 0.5425
+------- 10 epoch --------
+train loss, test loss | 2.587287280035468, 2.380733573518616
+train acc, test acc | 0.51, 0.5425
+------- 11 epoch --------
+train loss, test loss | 2.687198072806394, 2.110162861260196
+train acc, test acc | 0.46, 0.5425
+------- 12 epoch --------
+train loss, test loss | 1.9233207177311138, 1.8746221065002289
+train acc, test acc | 0.54, 0.5425
+------- 13 epoch --------
+train loss, test loss | 1.8303762097250647, 1.6696144365636867
+train acc, test acc | 0.52, 0.5425
+------- 14 epoch --------
+train loss, test loss | 1.529518526536379, 1.4918589580987476
+train acc, test acc | 0.51, 0.5425
+------- 15 epoch --------
+train loss, test loss | 1.5315536809548924, 1.3384288645305658
+train acc, test acc | 0.48, 0.5425
+------- 16 epoch --------
+train loss, test loss | 1.4692410244755059, 1.207065179615843
+train acc, test acc | 0.45, 0.5425
+------- 17 epoch --------
+train loss, test loss | 1.135567081130778, 1.0956123288151511
+train acc, test acc | 0.57, 0.5425
+------- 18 epoch --------
+train loss, test loss | 1.0138573974988432, 1.002546824037454
+train acc, test acc | 0.55, 0.5425
+------- 19 epoch --------
+train loss, test loss | 0.9238186595472058, 0.9261127207148471
+train acc, test acc | 0.56, 0.5425
+------- 20 epoch --------
+train loss, test loss | 0.9654164137681795, 0.8645550992936688
+train acc, test acc | 0.47, 0.5425
+------- 21 epoch --------
+train loss, test loss | 0.8386690899276051, 0.8161543448509525
+train acc, test acc | 0.52, 0.5425
+------- 22 epoch --------
+train loss, test loss | 0.8655247254999203, 0.8012172512246852
+train acc, test acc | 0.5, 0.5425
+------- 23 epoch --------
+train loss, test loss | 0.8644049269411207, 0.7947806490068179
+train acc, test acc | 0.48, 0.5425
+------- 24 epoch --------
+train loss, test loss | 0.8781288402161279, 0.7888692145958579
+train acc, test acc | 0.47, 0.5425
+------- 25 epoch --------
+train loss, test loss | 0.8764185655926551, 0.7834346281072797
+train acc, test acc | 0.44, 0.5425
+------- 26 epoch --------
+train loss, test loss | 0.86940491835362, 0.7784249632626509
+train acc, test acc | 0.5, 0.5425
+------- 27 epoch --------
+train loss, test loss | 0.8253139362384416, 0.7738022833371794
+train acc, test acc | 0.47, 0.5425
+------- 28 epoch --------
+train loss, test loss | 0.7996077335927366, 0.769531630001353
+train acc, test acc | 0.51, 0.5425
+------- 29 epoch --------
+train loss, test loss | 0.8068026434291563, 0.7655754927073493
+train acc, test acc | 0.51, 0.5425
+------- 30 epoch --------
+train loss, test loss | 0.7645673698732918, 0.7619060104461219
+train acc, test acc | 0.55, 0.5425
+------- 31 epoch --------
+train loss, test loss | 0.7864555236468841, 0.7584967739689236
+train acc, test acc | 0.53, 0.5425
+------- 32 epoch --------
+train loss, test loss | 0.7642394827126612, 0.7553246358524401
+train acc, test acc | 0.56, 0.5425
+------- 33 epoch --------
+train loss, test loss | 0.7459638344262653, 0.7523704178533244
+train acc, test acc | 0.59, 0.5425
+------- 34 epoch --------
+train loss, test loss | 0.8078945646274229, 0.7496120112047077
+train acc, test acc | 0.47, 0.5425
+------- 35 epoch --------
+train loss, test loss | 0.7561855139290595, 0.7470375849106858
+train acc, test acc | 0.54, 0.5425
+------- 36 epoch --------
+train loss, test loss | 0.7767983134497665, 0.744628160787446
+train acc, test acc | 0.51, 0.5425
+------- 37 epoch --------
+train loss, test loss | 0.7450984388889822, 0.7423723771075234
+train acc, test acc | 0.54, 0.54
+------- 38 epoch --------
+train loss, test loss | 0.7763047033652098, 0.7402576985036902
+train acc, test acc | 0.52, 0.54
+------- 39 epoch --------
+train loss, test loss | 0.7906849832989703, 0.738270885970712
+train acc, test acc | 0.44, 0.54
+------- 40 epoch --------
+train loss, test loss | 0.7317359359006873, 0.7364040220788434
+train acc, test acc | 0.55, 0.54
+------- 41 epoch --------
+train loss, test loss | 0.7705440541408903, 0.7346478714962226
+train acc, test acc | 0.49, 0.54
+------- 42 epoch --------
+train loss, test loss | 0.7274379321862365, 0.7329937465218508
+train acc, test acc | 0.56, 0.54
+------- 43 epoch --------
+train loss, test loss | 0.7639882433210967, 0.731433915688741
+train acc, test acc | 0.48, 0.54
+------- 44 epoch --------
+train loss, test loss | 0.7309752299946548, 0.7299616555445024
+train acc, test acc | 0.55, 0.54
+------- 45 epoch --------
+train loss, test loss | 0.7537466606887372, 0.7285709163005007
+train acc, test acc | 0.5, 0.54
+------- 46 epoch --------
+train loss, test loss | 0.739622214169875, 0.7272558097546897
+train acc, test acc | 0.51, 0.54
+------- 47 epoch --------
+train loss, test loss | 0.7913052286382828, 0.7260102807894276
+train acc, test acc | 0.4, 0.54
+------- 48 epoch --------
+train loss, test loss | 0.7463745892041577, 0.7248308569168432
+train acc, test acc | 0.49, 0.54
+------- 49 epoch --------
+train loss, test loss | 0.7599677053170738, 0.7237123664195928
+train acc, test acc | 0.47, 0.54
+------- 50 epoch --------
+train loss, test loss | 0.7368665554333136, 0.7226509247011353
+train acc, test acc | 0.54, 0.54
+elapsed_time:4183.483443975449[sec]

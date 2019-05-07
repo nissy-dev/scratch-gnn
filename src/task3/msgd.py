@@ -17,8 +17,8 @@ if __name__ == '__main__':
     learning_rate = 0.0001
     perturbation = 0.001
     momentum = 0.9
-    epoch = 100
-    batch_size = 200
+    epoch = 50
+    batch_size = 100
     gnn = Gnn(fvdim, step, learning_rate, perturbation)
     msgd = MSGD(learning_rate, momentum)
 
